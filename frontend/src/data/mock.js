@@ -67,11 +67,6 @@ export const products = [
   P(20, 'Sulphur 80% WDG', 'fungicides', 'UPL', 'Contact', 'WDG', 'Sulphur 80% WDG', ['vegetables', 'fruits', 'chilli'], ['powdery'], [['1 kg', 310, 370, 70]], { licence: L }),
 ]
 
-export const banners = [
-  { title: 'Kharif Season Sale', sub: 'Up to 25% off on fungicides, seeds & nutrients. Free delivery above ₹999.', cta: 'Shop offers', link: '/products?sort=discount', theme: '' },
-  { title: 'Bio-products for healthy soil', sub: 'Neem, Trichoderma and growth promoters – gentle on your farm.', cta: 'Explore bio range', link: '/products?category=bio-pesticides', theme: 'orange' },
-  { title: 'Spray safe. Spray smart.', sub: 'Sprayers, PPE kits and application guides from experts.', cta: 'View sprayers', link: '/products?category=sprayers', theme: 'brown' },
-]
 export const articles = [
   { slug: 'paddy-kharif-guide', icon: 'paddy', kind: 'Crop guide', title: 'Paddy: Kharif season calendar', summary: 'Nursery to harvest – key stages and typical input windows.' },
   { slug: 'safe-spraying', icon: 'glove', kind: 'Application guide', title: 'Safe spraying: 8 rules every farmer should follow', summary: 'PPE, timing, wind, nozzle choice and container disposal.' },
@@ -88,10 +83,6 @@ export const testimonials = [
   { name: 'Prakash Gowda', place: 'Mandya, KA', crop: 'Sugarcane', rating: 5, product: 'DAP 18:46:0', text: 'Bulk fertilizer bags were delivered to the farm gate. Paid by UPI and got the GST bill on my phone.' },
   { name: 'Kavitha S.', place: 'Salem, TN', crop: 'Maize', rating: 4, product: 'Battery Knapsack Sprayer 16L', text: 'The sprayer works well and came with clear instructions. Return policy was explained before I paid.' },
   { name: 'Ganesh Jadhav', place: 'Latur, MH', crop: 'Soybean', rating: 5, product: 'Zinc Sulphate 21%', text: 'Good quality micronutrients and quick delivery. I now reorder every season from my order history.' },
-]
-export const demoOrders = [
-  { number: 'AGM-260918-001', date: '2026-09-18', status: 'delivered', total: 1240 },
-  { number: 'AGM-260921-007', date: '2026-09-21', status: 'shipped', total: 3299 },
 ]
 export const coupons = { KISAN10: { percent: 10, min: 500, max: 500 }, WELCOME100: { flat: 100, min: 999 } }
 // Admin-configurable in the real system; nothing here is a legal assumption.

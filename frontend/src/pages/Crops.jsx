@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
 import { api } from '../lib/api'
-import { Empty, ProductCard, SectionHead, Skeletons } from '../components/ui'
 import Icon from '../components/Icon'
-import { crops, pests, products, stages } from '../data/mock'
+import { crops, products } from '../data/mock'
 import { photo } from '../lib/photos'
 
 const SEASONS = [['all', 'All crops'], ['kharif', 'Kharif'], ['rabi', 'Rabi'], ['year', 'Year-round']]

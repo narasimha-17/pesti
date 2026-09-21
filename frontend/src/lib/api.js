@@ -1,4 +1,4 @@
-import { products, categories, crops, brands, pests, banners, articles, testimonials, demoOrders } from '../data/mock'
+import { products, categories, crops, brands, pests, articles, testimonials } from '../data/mock'
 
 // Mock API. Each function maps 1:1 to a planned FastAPI endpoint, so swapping is a fetch() away.
 const wait = (v, ms = 250) => new Promise((r) => setTimeout(() => r(v), ms))
@@ -33,7 +33,6 @@ export const api = {
   categories: () => remote('/catalog/categories', categories),
   crops: () => remote('/catalog/crops', crops),
   brands: () => remote('/catalog/brands', brands),
-  banners: () => remote('/catalog/banners', banners),
   articles: () => remote('/catalog/articles', articles),
   testimonials: () => remote('/catalog/testimonials', testimonials),
   orders: () => call('/orders'),
@@ -80,7 +79,6 @@ export const api = {
     const matches = products.filter((p) => p.crops.includes(crop) && p.pests.includes(problem))
     return wait({ pest, products: matches })
   },
-  pests: (crop) => wait(pests.filter((p) => !crop || p.crops.includes(crop)), 100),
   // Pincode serviceability – warehouse rules would be admin-configured.
   pincode(pin) {
     if (!/^[1-9]\d{5}$/.test(pin)) return wait({ ok: false, msg: 'Enter a valid 6-digit pincode' }, 100)

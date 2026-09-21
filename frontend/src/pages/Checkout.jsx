@@ -18,10 +18,8 @@ export default function Checkout() {
   const [pay, setPay] = useState('upi')
   const [acks, setAcks] = useState([])
   const [busy, setBusy] = useState(false)
-  const [placed, setPlaced] = useState(null)
   const regulated = cart.filter((l) => l.product.regulated)
 
-  if (placed) return <div className="container"><Empty icon="cart" title="Order placed!"><p className="muted">Your order number is <b>{placed}</b>. We'll confirm delivery details on {a.phone}.</p><Link className="btn" style={{ marginTop: 16 }} to="/products">Continue shopping</Link></Empty></div>
   if (!cart.length) return <div className="container"><Empty icon="cart" title="Nothing to check out"><Link to="/products">Continue shopping</Link></Empty></div>
 
   const set = (k) => (e) => setA({ ...a, [k]: e.target.value })
@@ -48,7 +46,7 @@ export default function Checkout() {
       num = o.number
     } catch (x) { toast(x.message); setBusy(false); return }
     clearCart(); toast('Order placed!')
-    if (user) nav(`/account?tab=orders&placed=${num}`); else setPlaced(num)
+    nav(`/account?tab=orders&placed=${num}`)
   }
 
   return (
