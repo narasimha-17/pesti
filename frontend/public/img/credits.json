@@ -1,0 +1,156 @@
+{
+  "paddy": {
+    "file": "/img/crops/paddy.jpg",
+    "title": "File:Paddy nursery in Raichur, Karnataka.jpg",
+    "author": "Nanditha Gogate, WELL Labs",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Paddy_nursery_in_Raichur,_Karnataka.jpg"
+  },
+  "cotton": {
+    "file": "/img/crops/cotton.jpg",
+    "title": "File:Cotton plant, Ware County, GA, US.jpg",
+    "author": "Bubba73 (Jud McCranie)",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cotton_plant,_Ware_County,_GA,_US.jpg"
+  },
+  "chilli": {
+    "file": "/img/crops/chilli.jpg",
+    "title": "File:Naga Jolokia Peppers.jpg",
+    "author": "Gannon anjo at English Wikipedia",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Naga_Jolokia_Peppers.jpg"
+  },
+  "tomato": {
+    "file": "/img/crops/tomato.jpg",
+    "title": "File:Tomato plant (домати).jpg",
+    "author": "SA, The Green Ark, Bostanie",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tomato_plant_(%D0%B4%D0%BE%D0%BC%D0%B0%D1%82%D0%B8).jpg"
+  },
+  "maize": {
+    "file": "/img/crops/maize.jpg",
+    "title": "File:Corn in a field by Myrstigen 1.jpg",
+    "author": "W.carter",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Corn_in_a_field_by_Myrstigen_1.jpg"
+  },
+  "groundnut": {
+    "file": "/img/crops/groundnut.jpg",
+    "title": "File:Groundnuts farm.jpg",
+    "author": "Ibn Dagara",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Groundnuts_farm.jpg"
+  },
+  "soybean": {
+    "file": "/img/crops/soybean.jpg",
+    "title": "File:Glycine max kz04.jpg",
+    "author": "Krzysztof Ziarnek, Kenraiz",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Glycine_max_kz04.jpg"
+  },
+  "sugarcane": {
+    "file": "/img/crops/sugarcane.jpg",
+    "title": "File:Sugarcane Field Srirangapatna Karnataka Jul22 R16 06192.jpg",
+    "author": "This Photo was taken by Timothy A. Gonsalves.  Feel free to use my photos, but p",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sugarcane_Field_Srirangapatna_Karnataka_Jul22_R16_06192.jpg"
+  },
+  "vegetables": {
+    "file": "/img/crops/vegetables.jpg",
+    "title": "File:Onions Veg Stall Ooty Market Nilgiris Aug25 A7CR 07102.jpg",
+    "author": "Timothy A. Gonsalves",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Onions_Veg_Stall_Ooty_Market_Nilgiris_Aug25_A7CR_07102.jpg"
+  },
+  "sprayers": {
+    "file": "/img/cats/sprayers.jpg",
+    "title": "File:Vegetable farmer.jpg",
+    "author": "Doyanmoto",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Vegetable_farmer.jpg"
+  },
+  "farm-equipment": {
+    "file": "/img/cats/farm-equipment.jpg",
+    "title": "File:Minneapolis-Moline ZB Nursery Special cultivator VA1.jpg",
+    "author": "Acroterion",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Minneapolis-Moline_ZB_Nursery_Special_cultivator_VA1.jpg"
+  },
+  "fertilizers": {
+    "file": "/img/cats/fertilizers.jpg",
+    "title": "File:Harvesting hope for the future (5951468176).jpg",
+    "author": "DFID - UK Department for International Development",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Harvesting_hope_for_the_future_(5951468176).jpg"
+  },
+  "seeds": {
+    "file": "/img/cats/seeds.jpg",
+    "title": "File:Carrot seeds in Uzbekistan.JPG",
+    "author": "Shuhrataxmedov",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Carrot_seeds_in_Uzbekistan.JPG"
+  },
+  "insecticides": {
+    "file": "/img/cats/insecticides.jpg",
+    "title": "File:1975. Helicopter spraying insecticide. Western spruce budworm test spray. Washington. (35899280452).jpg",
+    "author": "R6, State &amp; Private Forestry, Forest Health Protection",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:1975._Helicopter_spraying_insecticide._Western_spruce_budworm_test_spray._Washington._(35899280452).jpg"
+  },
+  "fungicides": {
+    "file": "/img/cats/fungicides.jpg",
+    "title": "File:Powdery mildew 9.jpg",
+    "author": "Dmitry Brant",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Powdery_mildew_9.jpg"
+  },
+  "crop-protection": {
+    "file": "/img/cats/crop-protection.jpg",
+    "title": "File:Cryptomyzus ribis aphids on Ribes nigrum leaf in Dnipro by baby-bear.org.jpg",
+    "author": "Natalka Ukraine (baby-bear.org)",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cryptomyzus_ribis_aphids_on_Ribes_nigrum_leaf_in_Dnipro_by_baby-bear.org.jpg"
+  },
+  "fruits": {
+    "file": "/img/crops/fruits.jpg",
+    "title": "File:A photo of a mango tree with fruits.jpg",
+    "author": "Crown2022",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:A_photo_of_a_mango_tree_with_fruits.jpg"
+  },
+  "other": {
+    "file": "/img/crops/other.jpg",
+    "title": "File:Sunflower field Milky Way.jpg",
+    "author": "Juliancolton",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sunflower_field_Milky_Way.jpg"
+  },
+  "herbicides": {
+    "file": "/img/cats/herbicides.jpg",
+    "title": "File:Herbicide spraying, Carlson Waterfowl Production Area in LaMoure County, ND.jpg",
+    "author": "USFWS Mountain-Prairie",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Herbicide_spraying,_Carlson_Waterfowl_Production_Area_in_LaMoure_County,_ND.jpg"
+  },
+  "bio-pesticides": {
+    "file": "/img/cats/bio-pesticides.jpg",
+    "title": "File:Neem Leaves 120.jpg",
+    "author": "Nkpelawuni",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Neem_Leaves_120.jpg"
+  },
+  "growth-promoters": {
+    "file": "/img/cats/growth-promoters.jpg",
+    "title": "File:Red sandalwood (Pterocarpus santalinoides) seedlings at the Forestry Commission nursery, Ghana.jpg",
+    "author": "Keziasomuah",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Red_sandalwood_(Pterocarpus_santalinoides)_seedlings_at_the_Forestry_Commission_nursery,_Ghana.jpg"
+  },
+  "micronutrients": {
+    "file": "/img/cats/micronutrients.jpg",
+    "title": "File:Chlorose ferrique sur Citrus aurantium.jpg",
+    "author": "Eiku en exil",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chlorose_ferrique_sur_Citrus_aurantium.jpg"
+  }
+}
