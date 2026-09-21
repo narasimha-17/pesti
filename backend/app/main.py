@@ -63,6 +63,11 @@ class RefreshIn(BaseModel):
     refresh_token: str
 
 
+@app.get("/")
+def root():
+    return {"service": "AgriMart API", "status": "running", "docs": "/docs", "health": "/api/health"}
+
+
 @app.get("/api/health")
 def health():
     return {"ok": True}
