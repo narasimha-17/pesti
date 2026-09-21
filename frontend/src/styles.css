@@ -1280,7 +1280,6 @@ img.art.photo{width:100%;height:100%;object-fit:cover;display:block;background:#
 .rail,.cat-glass,.catnav .container,.lp-links{overflow-y:hidden;overscroll-behavior-y:auto}
 .rail{padding-top:12px;margin-top:-12px}
 .cat-glass{padding-top:22px}
-html,body{overflow-y:auto}
 
 /* Hero packs: real photos */
 
@@ -1417,7 +1416,7 @@ html,body{overflow-y:auto}
    Mobile / app layer: safe areas, touch targets, collapsing grids
    ========================================================== */
 html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
-body{overflow-x:hidden;touch-action:manipulation;overscroll-behavior-y:none}
+body{overflow-x:clip;touch-action:manipulation}
 img,svg,video{max-width:100%}
 .container{padding-inline:max(16px,env(safe-area-inset-left)) max(16px,env(safe-area-inset-right))}
 .utility{padding-top:env(safe-area-inset-top)}
