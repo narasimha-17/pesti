@@ -19,6 +19,7 @@ function Toggle({ on, onChange, label }) {
 function Settings() {
   const { user, login, toast, lang, setLang } = useApp()
   const [p, setP] = useState({ name: user.name, phone: user.phone || '' })
+  const [addr, setAddr] = useState({ line1: user.address?.line1 || '', district: user.address?.district || '', state: user.address?.state || '', pincode: user.address?.pincode || '' })
   const [pw, setPw] = useState({ current: '', next: '', again: '' })
   const [err, setErr] = useState({})
   const [prefs, setPrefs] = useState(() => { try { return JSON.parse(localStorage.getItem('agm_notify')) || DEFAULT_PREFS } catch { return DEFAULT_PREFS } })
@@ -32,6 +33,13 @@ function Settings() {
     e.preventDefault()
     try { login(await call('/auth/profile', { name: p.name, phone: p.phone || null }, 'PATCH')); setErr({}); toast('Profile updated') } catch (x) { setErr({ profile: x.message }) }
   }
+  const saveAddress = async (e) => {
+    e.preventDefault()
+    if (!addr.line1.trim() || !addr.district.trim() || !addr.state.trim()) return setErr({ addr: 'Complete all address fields' })
+    if (!/^\d{6}$/.test(addr.pincode)) return setErr({ addr: 'Enter a valid 6-digit pincode' })
+    try { login(await call('/auth/profile', { name: p.name, phone: p.phone || null, address: addr }, 'PATCH')); setErr({}); toast('Address saved') } catch (x) { setErr({ addr: x.message }) }
+  }
+  const setAddrField = (k) => (e) => setAddr({ ...addr, [k]: e.target.value })
   const savePassword = async (e) => {
     e.preventDefault()
     if (pw.next.length < 8) return setErr({ pw: 'Use at least 8 characters' })
@@ -50,6 +58,18 @@ function Settings() {
         <Field label="Mobile number"><input value={p.phone} onChange={setProfile('phone')} inputMode="numeric" maxLength={10} placeholder="10-digit number" autoComplete="tel" /></Field>
         {err.profile && <p className="err" role="alert">{err.profile}</p>}
         <button className="btn sm">Save changes</button>
+      </form>
+
+      <form className="card pad set-card" onSubmit={saveAddress}>
+        <h3><Icon name="pin" size={18} /> Delivery address</h3>
+        <Field label="House no., street, village"><input value={addr.line1} onChange={setAddrField('line1')} /></Field>
+        <div className="grid g-2">
+          <Field label="District"><input value={addr.district} onChange={setAddrField('district')} /></Field>
+          <Field label="State"><input value={addr.state} onChange={setAddrField('state')} /></Field>
+        </div>
+        <Field label="Pincode"><input value={addr.pincode} onChange={(e) => setAddr({ ...addr, pincode: e.target.value.replace(/\D/g, '').slice(0, 6) })} inputMode="numeric" /></Field>
+        {err.addr && <p className="err" role="alert">{err.addr}</p>}
+        <button className="btn sm">Save address</button>
       </form>
 
       <form className="card pad set-card" onSubmit={savePassword}>
@@ -88,7 +108,7 @@ export default function Account() {
   return (
     <div className="container acct">
       <header className="acct-hero">
-        <Avatar name={user.name} className="av-l" />
+        <Avatar name={user.name} gender={user.gender} className="av-l" />
         <div className="acct-id"><h1>{user.name}</h1><span>{user.email}</span>{user.role === 'admin' && <em>Admin</em>}</div>
         <div className="acct-stats">
           <div><b>{orders.length}</b><span>Orders</span></div>
@@ -116,9 +136,12 @@ export default function Account() {
             ))}</div>
           ) : <Empty icon="box" title="No orders yet"><Link className="btn" style={{ marginTop: 16 }} to="/products">Start shopping</Link></Empty>)}
           {tab === 'wishlist' && (wish.length ? <div className="grid g-prod">{products.filter((p) => wish.includes(p.id)).map((p) => <ProductCard key={p.id} p={p} />)}</div> : <Empty icon="heart" title="No saved products yet"><Link to="/products">Browse products</Link></Empty>)}
-          {tab === 'addresses' && (addresses.length
-            ? <div className="addr-grid">{addresses.map((a, n) => <div className="card pad addr" key={n}><Icon name="pin" size={20} /><b>{a.name || user.name}</b><p>{[a.line1, a.village, a.district, a.state].filter(Boolean).join(', ')}</p><small>PIN {a.pincode}{a.phone ? ` · ${a.phone}` : ''}</small></div>)}</div>
-            : <Empty icon="pin" title="No saved addresses"><span className="muted">Addresses from your orders appear here.</span></Empty>)}
+          {tab === 'addresses' && (addresses.length || user.address
+            ? <div className="addr-grid">
+                {user.address && <div className="card pad addr"><Icon name="pin" size={20} /><b>{user.name} <span className="badge">Default</span></b><p>{[user.address.line1, user.address.district, user.address.state].filter(Boolean).join(', ')}</p><small>PIN {user.address.pincode}</small></div>}
+                {addresses.map((a, n) => <div className="card pad addr" key={n}><Icon name="pin" size={20} /><b>{a.name || user.name}</b><p>{[a.line1, a.village, a.district, a.state].filter(Boolean).join(', ')}</p><small>PIN {a.pincode}{a.phone ? ` · ${a.phone}` : ''}</small></div>)}
+              </div>
+            : <Empty icon="pin" title="No saved addresses"><span className="muted">Add one from Settings, or it'll appear here after your first order.</span></Empty>)}
           {tab === 'notifications' && <div className="card pad"><h3>Notifications</h3><p style={{ display: 'flex', gap: 10 }}><Icon name="truck" size={18} /> Your latest order has shipped.</p><p style={{ display: 'flex', gap: 10 }}><Icon name="tag" size={18} /> Kharif offers are live, up to 25% off.</p></div>}
           {tab === 'settings' && <Settings />}
         </section>

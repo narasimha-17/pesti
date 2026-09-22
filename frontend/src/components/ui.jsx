@@ -1,8 +1,40 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useApp } from '../lib/store'
 import { disc, inr, minVariant } from '../lib/api'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Icon, { ProductArt } from './Icon'
+
+// A styled dropdown that replaces native <select> where the open list needs to look on-brand
+// (native listbox chrome can't be restyled consistently across browsers).
+export function Select({ value, onChange, options, placeholder = 'Select…', icon, id }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+  const current = options.find((o) => o[0] === value)
+  useEffect(() => {
+    if (!open) return undefined
+    const close = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false) }
+    const esc = (e) => { if (e.key === 'Escape') setOpen(false) }
+    document.addEventListener('mousedown', close); document.addEventListener('keydown', esc)
+    return () => { document.removeEventListener('mousedown', close); document.removeEventListener('keydown', esc) }
+  }, [open])
+  return (
+    <div className={`csel ${open ? 'open' : ''}`} ref={ref}>
+      <button type="button" id={id} className="csel-btn" aria-haspopup="listbox" aria-expanded={open} onClick={() => setOpen(!open)}>
+        {icon && <Icon name={icon} size={18} />}
+        <span className={current ? '' : 'ph'}>{current ? current[1] : placeholder}</span>
+        <Icon name="chevron" size={16} className="csel-chev" />
+      </button>
+      {open && (
+        <ul className="csel-panel" role="listbox">
+          {options.map(([v, label]) => (
+            <li key={v} role="option" aria-selected={v === value} className={v === value ? 'on' : ''}
+              onClick={() => { onChange(v); setOpen(false) }}>{label}{v === value && <Icon name="check" size={15} />}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
 
 export const Stars = ({ v, n }) => (
   <span className="stars" aria-label={`${v} out of 5`}>
@@ -73,10 +105,20 @@ export function ProductCard({ p, onQuickView, deal }) {
   )
 }
 
-// Person photo: /img/people/<name-slug>.jpg if present, then an illustrated avatar, then the initial.
-export function Avatar({ name, className = 'av' }) {
+// Person photo: /img/people/<name-slug>.jpg if present, then an illustrated avatar picked by
+// gender (male/female/other|unset), then the initial. The gender-based sets just steer hairstyle
+// on the avataaars generator — it's a cosmetic default, not a claim about the person.
+const AVATAR_STYLE = {
+  male: 'top=shortHairShortFlat,shortHairShortWaved,shortHairShortCurly&facialHairProbability=40',
+  female: 'top=longHairStraight,longHairCurly,longHairBun,longHairStraight2&facialHairProbability=0',
+}
+export function Avatar({ name, gender, className = 'av' }) {
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '')
-  const srcs = [`/img/people/${slug}.jpg`, `https://api.dicebear.com/9.x/notionists/svg?seed=${encodeURIComponent(name)}&backgroundColor=e8f7dd`]
+  const seed = encodeURIComponent(name)
+  const illustrated = AVATAR_STYLE[gender]
+    ? `https://api.dicebear.com/9.x/avataaars/svg?seed=${seed}&backgroundColor=e8f7dd&${AVATAR_STYLE[gender]}`
+    : `https://api.dicebear.com/9.x/notionists/svg?seed=${seed}&backgroundColor=e8f7dd`
+  const srcs = [`/img/people/${slug}.jpg`, illustrated]
   const [i, setI] = useState(0)
   if (i >= srcs.length) return <span className={className}>{name[0]}</span>
   return <span className={`${className} has-img`}><img src={srcs[i]} alt={name} loading="lazy" onError={() => setI(i + 1)} /></span>

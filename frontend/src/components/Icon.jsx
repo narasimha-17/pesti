@@ -72,10 +72,28 @@ export default function Icon({ name, size = 20, fill = false, className = '', st
   )
 }
 
+// Diya-and-lotus placeholder mark, used until /img/lakshmi-logo.png exists (then LogoMark swaps to it).
+function PlaceholderMark() {
+  return (
+    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+      <rect width="34" height="34" rx="11" fill="#7a1230" />
+      <path d="M17 8c2 2.6 3.6 4.8 3.6 7a3.6 3.6 0 01-7.2 0c0-2.2 1.6-4.4 3.6-7z" fill="#f6c453" />
+      <path d="M8 22c2.2-2.4 5.6-3.6 9-3.6s6.8 1.2 9 3.6c-2.2 1.6-5.6 2.6-9 2.6s-6.8-1-9-2.6z" fill="#f6c453" />
+      <path d="M17 18.4V24" stroke="#7a1230" strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function LogoMark() {
+  const [broken, setBroken] = useState(false)
+  if (broken) return <PlaceholderMark />
+  return <img src="/img/lakshmi-logo.png" alt="" onError={() => setBroken(true)} />
+}
+
 export const Logo = ({ light }) => (
   <span className={`logo ${light ? 'light' : ''}`}>
-    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="11" fill="#b6e04a" /><path d="M9 25c-1-9 4-15 16-15 0 11-6 16-16 15z" fill="#0d3b26" /><path d="M9 25c4-6 8-10 12-12" stroke="#b6e04a" strokeWidth="1.8" strokeLinecap="round" fill="none" /></svg>
-    <span>Agri<em>Mart</em></span>
+    <LogoMark />
+    <span>Lakshmi <em>Agency</em></span>
   </span>
 )
 

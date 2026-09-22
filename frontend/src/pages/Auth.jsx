@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useApp } from '../lib/store'
 import { call } from '../lib/api'
 import Icon, { HeroScene, Logo } from '../components/Icon'
+import { Select } from '../components/ui'
 
 function OtpBoxes({ value, onChange }) {
   const refs = useRef([])
@@ -28,7 +29,7 @@ export function Auth({ register = false }) {
   const [sp] = useSearchParams()
   const [method, setMethod] = useState('email') // email | otp
   const [show, setShow] = useState(false)
-  const [f, setF] = useState({ name: '', email: '', phone: '', password: '' })
+  const [f, setF] = useState({ name: '', email: '', phone: '', password: '', gender: '' })
   const [otp, setOtp] = useState('')
   const [sent, setSent] = useState(false)
   const [err, setErr] = useState({})
@@ -48,6 +49,7 @@ export function Auth({ register = false }) {
     e.preventDefault()
     const er = {}
     if (register && f.name.trim().length < 2) er.name = 'Enter your name'
+    if (register && !f.gender) er.gender = 'Select a gender'
     if (method === 'email') {
       if (!/^\S+@\S+\.\S+$/.test(f.email)) er.email = 'Enter a valid email address'
       if (f.password.length < 8) er.password = 'Use at least 8 characters'
@@ -63,7 +65,9 @@ export function Auth({ register = false }) {
         if (!sent) { const r = await call('/auth/otp', { phone: f.phone }); setSent(true); toast(r.hint); return }
         finish(await call('/auth/otp', { phone: f.phone, code: otp, name: f.name }))
       } else {
-        finish(await call(register ? '/auth/register' : '/auth/login', register ? { name: f.name, email: f.email, password: f.password } : { email: f.email, password: f.password }))
+        finish(await call(register ? '/auth/register' : '/auth/login', register
+          ? { name: f.name, email: f.email, password: f.password, gender: f.gender }
+          : { email: f.email, password: f.password }))
       }
     } catch (x) {
       setErr({ form: x.message })
@@ -74,7 +78,7 @@ export function Auth({ register = false }) {
     <div className="auth">
       <section className="auth-form">
         <div className="auth-top">
-          <Link to="/" aria-label="AgriMart home"><Logo /></Link>
+          <Link to="/" aria-label="Lakshmi Agency home"><Logo /></Link>
           <Link to="/" className="link-arrow" style={{ fontSize: '.86rem' }}><Icon name="arrow" size={15} style={{ transform: 'scaleX(-1)' }} /> Back to home</Link>
         </div>
 
@@ -95,6 +99,15 @@ export function Auth({ register = false }) {
           </div>
 
           {register && <div className="af"><label htmlFor="a-name">Full name</label><div className="inp"><Icon name="user" size={18} /><input id="a-name" value={f.name} onChange={set('name')} autoComplete="name" placeholder="Ramesh Reddy" /></div>{err.name && <p className="err" role="alert">{err.name}</p>}</div>}
+
+          {register && (
+            <div className="af">
+              <label htmlFor="a-gender">Gender</label>
+              <Select id="a-gender" icon="user" value={f.gender} onChange={(v) => setF({ ...f, gender: v })}
+                options={[['female', 'Female'], ['male', 'Male'], ['other', 'Other / prefer not to say']]} />
+              {err.gender && <p className="err" role="alert">{err.gender}</p>}
+            </div>
+          )}
 
           {method === 'email' ? (
             <>

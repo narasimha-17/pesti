@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 
 from sqlalchemy.orm import Session
 
-from .models import Order, User
+from .models import Coupon, Order, User
 from .security import hash_password
 
 DEMO_USERS = [
@@ -29,5 +29,11 @@ def seed(db: Session) -> None:
             Order(number="AGM-260921-007", user_id=ramesh.id, status="shipped", total=3299, created_at=now,
                   items=[{"name": "Coragen Insecticide", "pack": "150 ml", "qty": 1, "price": 2150},
                          {"name": "Neem Oil 10000 PPM", "pack": "1 L", "qty": 1, "price": 890}], address=addr),
+        ])
+        db.commit()
+    if not db.query(Coupon).first():
+        db.add_all([
+            Coupon(code="KISAN10", kind="percent", value=10, min_order=500),
+            Coupon(code="WELCOME100", kind="flat", value=100, min_order=999),
         ])
         db.commit()

@@ -21,7 +21,7 @@ export default function ProductDetail() {
   const [pin, setPin] = useState(pincode)
   const [del, setDel] = useState(null)
   useEffect(() => { setVi(0); setQty(1); setTab(0) }, [slug])
-  useEffect(() => { if (p) document.title = `${p.name} – AgriMart` }, [p])
+  useEffect(() => { if (p) document.title = `${p.name} – Lakshmi Agency` }, [p])
 
   if (isLoading) return <div className="container pad"><div className="skeleton" style={{ minHeight: 420 }} /></div>
   if (!p) return <div className="container"><Empty icon="search" title="Product not found"><Link to="/products">Browse products</Link></Empty></div>

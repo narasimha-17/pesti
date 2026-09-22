@@ -6,6 +6,7 @@ import { products } from '../data/mock'
 import Icon, { Logo, ProductArt } from '../components/Icon'
 import LandingScene from '../components/LandingScene'
 import Stat from '../components/Stat'
+import WhatsAppButton from '../components/WhatsAppButton'
 
 const BRANDS = ['Bayer', 'Syngenta', 'UPL', 'Dhanuka', 'Coromandel', 'IFFCO', 'Tata Rallis', 'Katyayani', 'Neptune', 'Kisan Kraft']
 const STEPS = [
@@ -33,7 +34,7 @@ function Marquee({ rev = false, children }) {
 export default function Landing() {
   const { data: quotes = [] } = useQuery({ queryKey: ['quotes'], queryFn: api.testimonials })
   const [solid, setSolid] = useState(false)
-  useEffect(() => { document.title = 'AgriMart – Farm inputs delivered to your village' }, [])
+  useEffect(() => { document.title = 'Lakshmi Agency – Farm inputs delivered to your village' }, [])
   useEffect(() => {
     const on = () => setSolid(window.scrollY > 40)
     on(); window.addEventListener('scroll', on, { passive: true })
@@ -45,10 +46,9 @@ export default function Landing() {
     <div className="lp">
       <header className={`lx-nav ${solid ? 'solid' : ''}`}>
         <div className="container lp-nav-row">
-          <Link to="/" aria-label="AgriMart home"><Logo light={!solid} /></Link>
-          <nav className="lp-links" aria-label="Sections"><a href="#how">How it works</a><a href="#why">Why AgriMart</a><Link to="/testimonials">Stories</Link><a href="#faq">FAQ</a></nav>
+          <Link to="/" aria-label="Lakshmi Agency home"><Logo light={!solid} /></Link>
+          <nav className="lp-links" aria-label="Sections"><a href="#how">How it works</a><a href="#why">Why Lakshmi Agency</a><Link to="/testimonials">Stories</Link><a href="#faq">FAQ</a></nav>
           <div className="lp-actions">
-            <Link to="/shop" className="btn ghost sm hide-m">Browse store</Link>
             <Link to="/login" className="btn ghost sm">Login</Link>
             <Link to="/register" className="btn lime sm">Get started</Link>
           </div>
@@ -105,7 +105,7 @@ export default function Landing() {
 
       <section className="lp-sec alt" id="why">
         <div className="container">
-          <div className="lp-head"><span className="eyebrow">Why AgriMart</span><h2>Made to be simple and safe</h2></div>
+          <div className="lp-head"><span className="eyebrow">Why Lakshmi Agency</span><h2>Made to be simple and safe</h2></div>
           <div className="lp-feats">{FEATURES.map(([ic, t, d]) => <div key={t} className="lp-feat"><span className="ib"><Icon name={ic} size={24} /></span><h3>{t}</h3><p>{d}</p></div>)}</div>
         </div>
       </section>
@@ -147,9 +147,10 @@ export default function Landing() {
             <div><h4>Account</h4><Link to="/login">Login</Link><Link to="/register">Create account</Link></div>
             <div><h4>More</h4><Link to="/testimonials">Farmer stories</Link><a href="#faq">FAQ</a></div>
           </div>
-          <div className="copy">© 2026 AgriMart demo. Crop-protection products must be used as per the label and local regulations. Content here is educational and not a substitute for advice from your agriculture officer.</div>
+          <div className="copy">© 2026 Lakshmi Agency demo. Crop-protection products must be used as per the label and local regulations. Content here is educational and not a substitute for advice from your agriculture officer.</div>
         </div>
       </footer>
+      <WhatsAppButton />
     </div>
   )
 }

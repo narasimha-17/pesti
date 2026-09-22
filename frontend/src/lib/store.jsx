@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { translate } from './i18n'
+import { initGoogleTranslate, setGoogleLang } from './gtranslate'
 import { coupons } from '../data/mock'
 import Icon from '../components/Icon'
 
@@ -23,6 +24,9 @@ export function AppProvider({ children }) {
   const [recent, setRecent] = usePersisted('agm_recent', [])
   const [coupon, setCoupon] = useState(null)
   const [toasts, setToasts] = useState([])
+
+  useEffect(() => { initGoogleTranslate() }, [])
+  const changeLang = useCallback((code) => { setLang(code); setGoogleLang(code) }, [setLang])
 
   const toast = useCallback((msg) => {
     const id = Math.random()
@@ -52,7 +56,7 @@ export function AppProvider({ children }) {
 
   const value = {
     user, login: setUser, logout: () => { localStorage.removeItem('agm_token'); localStorage.removeItem('agm_refresh'); setUser(null) }, cart, addToCart, setQty, clearCart: () => setCart([]),
-    wish, toggleWish, lang, setLang, t: (k) => translate(lang, k), pincode, setPincode, recent, addRecent,
+    wish, toggleWish, lang, setLang: changeLang, t: (k) => translate(lang, k), pincode, setPincode, recent, addRecent,
     coupon, setCoupon, discount, subtotal, shipping, tax, total, toast, cartCount: cart.reduce((s, l) => s + l.qty, 0),
   }
   return (

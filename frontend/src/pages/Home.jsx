@@ -125,7 +125,7 @@ export default function Home() {
       {!user && (
         <div className="guest-strip">
           <div className="container">
-            <span className="gs-text"><Icon name="tag" size={18} /><span><b>New to AgriMart?</b> Sign up and get ₹100 off your first order above ₹999. Use code <b>WELCOME100</b>.</span></span>
+            <span className="gs-text"><Icon name="tag" size={18} /><span><b>New to Lakshmi Agency?</b> Sign up and get ₹100 off your first order above ₹999. Use code <b>WELCOME100</b>.</span></span>
           </div>
         </div>
       )}

@@ -49,7 +49,7 @@ function Spotlight({ list }) {
 export default function Testimonials() {
   const { data: all = [] } = useQuery({ queryKey: ['quotes'], queryFn: api.testimonials })
   const [crop, setCrop] = useState('all')
-  useEffect(() => { document.title = 'Farmer stories – AgriMart' }, [])
+  useEffect(() => { document.title = 'Farmer stories – Lakshmi Agency' }, [])
   const cropsUsed = [...new Set(all.map((q) => q.crop))]
   const list = crop === 'all' ? all : all.filter((q) => q.crop === crop)
 
@@ -59,7 +59,7 @@ export default function Testimonials() {
         <div className="container">
           <span className="eyebrow" style={{ color: 'var(--lime)' }}>Farmer stories</span>
           <h1>Voices from the field.</h1>
-          <p>Real experiences from farmers who order their seeds, nutrition and crop protection through AgriMart.</p>
+          <p>Real experiences from farmers who order their seeds, nutrition and crop protection through Lakshmi Agency.</p>
           <div className="ts-stats"><Stat to={4.7} decimals={1} suffix=" / 5" label="Average rating" /><Stat to={10} suffix=" lakh+" label="Farmers served" /><Stat to={96} suffix="%" label="Would order again" /></div>
         </div>
       </section>
@@ -90,7 +90,7 @@ export default function Testimonials() {
         </div>
 
         <div className="band ts-cta">
-          <div><h2>Ordered from AgriMart?</h2><p>Log in and share your experience. Your story helps other farmers choose with confidence.</p></div>
+          <div><h2>Ordered from Lakshmi Agency?</h2><p>Log in and share your experience. Your story helps other farmers choose with confidence.</p></div>
           <div className="hero-cta"><Link to="/register" className="btn lime">Create account <Icon name="arrow" size={18} /></Link><Link to="/shop" className="btn ghost" style={{ color: '#fff', borderColor: 'rgba(255,255,255,.4)' }}>Browse the store</Link></div>
         </div>
       </div>

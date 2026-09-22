@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-route
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppProvider, useApp } from './lib/store'
 import Layout from './components/Layout'
+import AdminLayout from './components/AdminLayout'
 import Home from './pages/Home'
 import { initReveal } from './lib/reveal'
 import './styles.css'
@@ -21,6 +22,8 @@ const ShopByCrop = lazy(() => import('./pages/Crops').then((m) => ({ default: m.
 const CropAssistant = lazy(() => import('./pages/Crops').then((m) => ({ default: m.CropAssistant })))
 const Admin = lazy(() => import('./pages/Admin'))
 const Credits = lazy(() => import('./pages/Credits'))
+const Rentals = lazy(() => import('./pages/Rentals'))
+const RentalDetail = lazy(() => import('./pages/Rentals').then((m) => ({ default: m.RentalDetail })))
 const Learn =lazy(() => import('./pages/Admin').then((m) => ({ default: m.Learn })))
 
 // Visitors see the marketing landing page; signed-in users go straight to the store.
@@ -66,10 +69,14 @@ createRoot(document.getElementById('root')).render(
                 <Route path="crops" element={<ShopByCrop />} />
                 <Route path="crop-assistant" element={<Protected><CropAssistant /></Protected>} />
                 <Route path="learn" element={<Learn />} />
+                <Route path="rentals" element={<Rentals />} />
+                <Route path="rentals/:id" element={<RentalDetail />} />
                 <Route path="account" element={<Protected><Account /></Protected>} />
-                <Route path="admin" element={<Protected><Admin /></Protected>} />
                 <Route path="credits" element={<Credits />} />
                 <Route path="*" element={<div className="container pad"><h1>Page not found</h1></div>} />
+              </Route>
+              <Route element={<Protected><AdminLayout /></Protected>}>
+                <Route path="admin" element={<Admin />} />
               </Route>
             </Routes>
           </Suspense>
